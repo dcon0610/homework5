@@ -1,11 +1,30 @@
 //initialise jquery
 $(document).ready(function(){
-    //static date displayer. 
+    // for (i=0; i<9; i++)
+    // var setID=i
+  
+
+    // $("#regTitle").html("Hello World");  
+        
+
+   
  
     $( "#currentDay" ).text(currentTime)
 
 
+    $( "#9").click(function() {
+    
+       var inputID="#1"
+       var event = ($(inputID). val())
+       if (event !="") {
+       console.log(event)
+       var k=localStorage.length
+       localStorage.setItem(k+1,event + inputID)
+       }
+       else return
 
+
+    })
 
 
 
