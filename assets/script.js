@@ -1,114 +1,27 @@
 //initialise jquery
 $(document).ready(function(){
     colorTable()
-    // for (i=0; i<9; i++)
-    // var setID=i
-  
-
-    // $("#regTitle").html("Hello World");  
+    displaySaved()
+  ;  
         
 
    
  
     $( "#currentDay" ).text(currentTime)
 
-
-    $( "#b9").click(function() {
-    
-       var inputID="#1"
-       var event = ($(inputID). val())
+   for (i=9;i<17;i++){
+    $( "#b"+i).click(function() {
+       var event = ($("#"+(this.id.slice(1)-9)). val())
        if (event !="") {
        var k=localStorage.length
-       localStorage.setItem(k+1,event + inputID)
+       localStorage.setItem(k+1,event + this.id.slice(1))
        }
        else return
 
 
     })
-    $( "#b10").click(function() {
-    
-        var inputID="#2"
-        var event = ($(inputID). val())
-        if (event !="") {
-        var k=localStorage.length
-        localStorage.setItem(k+1,event + inputID)
-        }
-        else return
- 
- 
-     })
-     $( "#b11").click(function() {
-    
-        var inputID="#3"
-        var event = ($(inputID). val())
-        if (event !="") {
-        var k=localStorage.length
-        localStorage.setItem(k+1,event + inputID)
-        }
-        else return
- 
- 
-     })
-     $( "#b12").click(function() {
-    
-        var inputID="#4"
-        var event = ($(inputID). val())
-        if (event !="") {
-        var k=localStorage.length
-        localStorage.setItem(k+1,event + inputID)
-        }
-        else return
- 
- 
-     })
-     $( "#b13").click(function() {
-    
-        var inputID="#5"
-        var event = ($(inputID). val())
-        if (event !="") {
-        var k=localStorage.length
-        localStorage.setItem(k+1,event + inputID)
-        }
-        else return
- 
- 
-     })
-     $( "#b14").click(function() {
-    
-        var inputID="#6"
-        var event = ($(inputID). val())
-        if (event !="") {
-        var k=localStorage.length
-        localStorage.setItem(k+1,event + inputID)
-        }
-        else return
- 
- 
-     })
-     $( "#b15").click(function() {
-    
-        var inputID="#7"
-        var event = ($(inputID). val())
-        if (event !="") {
-        var k=localStorage.length
-        localStorage.setItem(k+1,event + inputID)
-        }
-        else return
- 
- 
-     })
-     $( "#b16").click(function() {
-    
-        var inputID="#8"
-        var event = ($(inputID). val())
-        if (event !="") {
-        var k=localStorage.length
-        localStorage.setItem(k+1,event + inputID)
-        }
-        else return
- 
- 
-     })
+   }
+
 
     function colorTable(){
         var input =[]
@@ -118,22 +31,55 @@ $(document).ready(function(){
         }
       
         var currentTime = moment().format('HH');
-        console.log(currentTime)
         for (i=9; i<17; i++){
-            console.log(i)
             if(i<currentTime){
-            $("#"+i).css({"background-color":"grey"})
+            $("#"+i).css({"background-color":"lightgrey"})
             }
              else if(i-currentTime===0){
-                $("#"+i).css({"background-color":"red"})
+                $("#"+i).css({"background-color":"salmon"})
                 }
             else{
-                $("#"+i).css({"background-color":"green"})
+                $("#"+i).css({"background-color":"lightgreen"})
                 }
            
 
 
         }
+        var adjustedCurrentTime=currentTime-9
+        for (i=0; i<9; i++){
+         if(i<adjustedCurrentTime){
+         $("#"+i).css({"background-color":"lightgrey"})
+         }
+          else if(i-adjustedCurrentTime===0){
+             $("#"+i).css({"background-color":"salmon"})
+             }
+         else{
+             $("#"+i).css({"background-color":"lightgreen"})
+             }
+        
+
+
+     }
+
+    }
+
+    function displaySaved() {
+       var id=[]
+       letters=[]
+      for (i=1;i<localStorage.length+1; i++){
+         thestring=localStorage.getItem(i)
+         id[i-1] = thestring.replace( /^\D+/g, '')
+         letters[i-1]=thestring.replace(/\d+/g, '')
+         
+       
+
+
+      }
+      console.log(id)
+      for (i=0; i<localStorage.length; i++){
+        $("#"+(id[i]-9)).attr('placeholder',letters[i])
+      }
+
 
     }
 
